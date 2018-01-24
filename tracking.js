@@ -1,27 +1,31 @@
 'use strict'
 
-//This array will hold my Objects
-// var imageArray = ['bag', 'banana', 'bathroom'];
-var names = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck'];
+//This array will hold my Object names
+var namesA = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck'];
+Products.looped = 0;
 Products.allproduct = [];
 
-
+//Constructor for all my Objects
 function Products(fileP, name){
   this.fileP = fileP;
+  this.alt = name;
   this.name = name;
+  this.displayed = 0;
+  this.clicked = 0;
   Products.allproduct.push(this);
-  Products.checkNum = [];
 }
 
 
 
-//generates two products
+//Generates all Objects via Products cunstructor by calling the "names" array
 var generate = function(){
-  for(var i = 0; i < names.length; i++){
-    new Products('img/' + names[i] + '.jpg', names[i]);
+  for(var i = 0; i < namesA.length; i++){
+    new Products('img/' + namesA[i] + '.jpg', namesA[i]);
   }
 };
+generate();
 
+//Here we call the DOM for Imgage IDs
 var imgEl1 = document.getElementById('image1');
 var imgEl2 = document.getElementById('image2');
 var imgEl3 = document.getElementById('image3');
@@ -30,9 +34,9 @@ imgEl1.addEventListener('click', randNum);
 imgEl2.addEventListener('click', randNum);
 imgEl3.addEventListener('click', randNum);
 
-//provides random index from my array
 
-function randNum(e){
+//randNum will complete three steps. 1-create a random number. 2-compare random number to conditions thus not allowing repetition. 3-If rand number are not repeated then rand will be assigned to attribute "src" allowing image to be displayed. 
+function randNum(){
   var randArray = [];
   var leftNum = Math.floor(Math.random() * Products.allproduct.length);
   var centerNum = Math.floor(Math.random() * Products.allproduct.length);
@@ -42,17 +46,44 @@ function randNum(e){
     leftNum = Math.floor(Math.random() * Products.allproduct.length);
     centerNum = Math.floor(Math.random() * Products.allproduct.length);
     rightNum = Math.floor(Math.random() * Products.allproduct.length);
-    console.log('repeat');
-    
+    // console.log('repeat');
+  }if(Products.looped < 5){
+    randArray.push(leftNum,centerNum,rightNum);
+    console.log(randArray);
+    console.log(event);
+
+    //Displays image using rand number, assigns the "alt" property to each object and counts times image was displayed.
+    imgEl1.src = Products.allproduct[leftNum].fileP;
+    imgEl1.alt = Products.allproduct[leftNum].alt;
+    Products.allproduct[leftNum].displayed++;
+
+    imgEl2.src = Products.allproduct[centerNum].fileP;
+    imgEl2.alt = Products.allproduct[leftNum].name;
+    Products.allproduct[centerNum].displayed++;
+
+    imgEl3.src = Products.allproduct[rightNum].fileP;
+    imgEl3.alt = Products.allproduct[leftNum].name;
+    Products.allproduct[rightNum].displayed++;
+
+    for(var i = 0; i < Products.allproduct.length; i++){
+      if(event.target.alt === Products.allproduct[i].alt) {
+        Products.allproduct[i].clicked++;
+      }
+    }
+    Products.looped++;
+  }else{
+    exiTally();
   }
-  randArray.push(leftNum,centerNum,rightNum);
-  console.log(randArray);
-  imgEl1.src = Products.allproduct[leftNum].fileP;
-  imgEl2.src = Products.allproduct[centerNum].fileP;
-  imgEl3.src = Products.allproduct[rightNum].fileP;
 }
 
+var exiTally = function(){
+  for(var i = 0; i < namesA.length; i++){
+    console.log(Products.allproduct[i].alt + 'displayed ' + Products.allproduct[i].displayed + ' clicked ' + Products.allproduct[i].clicked);
+  }
+};
 
-generate();
+
+
+//FOR loop will add a limit to number of times we can interact with page
+
 randNum();
-

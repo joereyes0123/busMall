@@ -64,11 +64,10 @@ function randNum(){
     Products.allproduct[centerNum].displayed++;
 
 
-    // imgEl3.src = Products.allproduct[rightNum].fileP;
-    // imgEl3.alt = Products.allproduct[rightNum].name;
-    // Products.allproduct[rightNum].displayed++;
+    imgEl3.src = Products.allproduct[rightNum].fileP;
+    imgEl3.alt = Products.allproduct[rightNum].alt;
+    Products.allproduct[rightNum].displayed++;
     Products.looped++;
-    
   }else{
     exiTally();
   }

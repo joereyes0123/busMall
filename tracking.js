@@ -6,12 +6,14 @@ var totalClick = [];
 Products.looped = 0;
 Products.allproduct = [];
 
+if(localStorage.getItem('totalClick1')){
+  totalClick = JSON.parse(localStorage.getItem('totalClick1'));
+}
 
 //Constructor for all my Objects
 function Products(fileP, name){
   this.fileP = fileP;
   this.alt = name;
-  // this.name = name;
   this.displayed = 0;
   this.clicked = 0;
   Products.allproduct.push(this);
@@ -75,20 +77,36 @@ function randNum(){
 
 function clickedT(event){
   randNum();
-  for(var i = 0; i < Products.allproduct.length; i++)
-    if(event.target.alt === Products.allproduct[i].alt) {
+  for(var i = 0; i < Products.allproduct.length; i++){
+    if(event.target.alt === Products.allproduct[i].alt){
       Products.allproduct[i].clicked++;
     }
+  }
 }
 
 
 var exiTally = function(){
   for(var i = 0; i < namesA.length; i++){
-    totalClick.push(Products.allproduct[i].clicked);
+    if(localStorage.totalClick1){
+      totalClick[i] += Products.allproduct[i].clicked;
+    }else{
+      totalClick.push(Products.allproduct[i].clicked);
+    }
   }
+  localStorage.setItem('totalClick1', JSON.stringify(totalClick));
   imgEl1.removeEventListener('click', clickedT);
+  imgEl2.removeEventListener('click', clickedT);
+  imgEl3.removeEventListener('click', clickedT);
   renderChart();
 };
+
+
+
+
+
+
+
+
 
 function renderChart(){
   var context = document.getElementById('chart').getContext('2d');

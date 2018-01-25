@@ -1,11 +1,12 @@
 'use strict';
 
-//This array will hold my Object names
+//Declearing multiple variables
 var namesA = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
 var totalClick = [];
 Products.looped = 0;
 Products.allproduct = [];
 
+//This "if" stament will check if the "totalClick" array already exists in local storage
 if(localStorage.getItem('totalClick1')){
   totalClick = JSON.parse(localStorage.getItem('totalClick1'));
 }
@@ -29,12 +30,13 @@ var generate = function(){
 };
 
 
-//Here we call the DOM for Imgage IDs
+//Here we access the DOM for Imgage IDs
 var imgEl1 = document.getElementById('image1');
 var imgEl2 = document.getElementById('image2');
 var imgEl3 = document.getElementById('image3');
 
 
+//Adding event listener
 imgEl1.addEventListener('click', clickedT);
 imgEl2.addEventListener('click', clickedT);
 imgEl3.addEventListener('click', clickedT);
@@ -50,7 +52,8 @@ function randNum(){
     leftNum = Math.floor(Math.random() * Products.allproduct.length);
     centerNum = Math.floor(Math.random() * Products.allproduct.length);
     rightNum = Math.floor(Math.random() * Products.allproduct.length);
-    // console.log('repeat');
+
+    // start counting the number of times images were generated
   }if(Products.looped < 26){
     randArray.push(leftNum,centerNum,rightNum);
     console.log(randArray);
@@ -74,7 +77,7 @@ function randNum(){
     exiTally();
   }
 }
-
+//Event handler initiates the "randNum" function and tracks which images were clicked
 function clickedT(event){
   randNum();
   for(var i = 0; i < Products.allproduct.length; i++){
@@ -84,7 +87,7 @@ function clickedT(event){
   }
 }
 
-
+//if number of images generated has exced our loop: "exitTally" will sum up totals
 var exiTally = function(){
   for(var i = 0; i < namesA.length; i++){
     if(localStorage.totalClick1){
@@ -107,7 +110,7 @@ var exiTally = function(){
 
 
 
-
+//Build our JSChart 
 function renderChart(){
   var context = document.getElementById('chart').getContext('2d');
   var chartColors = ['#E37222'];

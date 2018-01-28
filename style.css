@@ -1,0 +1,19 @@
+body { 
+  color: rgb(26, 12, 151);
+  background-color: rgb(252, 252, 252); 
+  margin-left:auto;
+  margin-right:auto;
+  width:960px;
+  /* margin-left: 150px; */
+
+}
+
+#images{
+  text-align: center;
+  position: relative;
+}
+
+#chartDisplay{
+  position: relative;
+
+}

@@ -42,8 +42,9 @@ imgEl2.addEventListener('click', clickedT);
 imgEl3.addEventListener('click', clickedT);
 
 //randNum will complete three steps. 1-create a random number. 2-compare random number to conditions thus not allowing repetition. 3-If rand number are not repeated then rand will be assigned to attribute "src" allowing image to be displayed.
+var randArray = [];
 function randNum(){
-  var randArray = [];
+  
   var leftNum = Math.floor(Math.random() * Products.allproduct.length);
   var centerNum = Math.floor(Math.random() * Products.allproduct.length);
   var rightNum = Math.floor(Math.random() * Products.allproduct.length);
@@ -54,7 +55,8 @@ function randNum(){
     rightNum = Math.floor(Math.random() * Products.allproduct.length);
 
     // start counting the number of times images were generated
-  }if(Products.looped < 26){
+  }randArray = [];
+  if(Products.looped < 5){
     randArray.push(leftNum,centerNum,rightNum);
     console.log(randArray);
 
@@ -113,7 +115,7 @@ var exiTally = function(){
 //Build our JSChart 
 function renderChart(){
   var context = document.getElementById('chart').getContext('2d');
-  var chartColors = ['#E37222'];
+  var chartColors = ['#E61515'];
   var totalChart = new Chart(context, {
     type: 'bar',
     data: {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Shopping Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+  <h1>Your Shopping Cart</h1>
+  <table id="cart"></table>
+
+  <form>
+    <fieldset>
+      <label for="userName">User Name</label>
+      <input name="userName">
+      <label for="street">Street Name</label>
+      <input name="street">
+      <label for="city">City</label>
+      <input name="city">
+      <label for="state">State</label>
+      <input name="state">
+      <label for="zipCode">Zip Code</label>
+      <input name="zipCode">
+      <label for="phoneNumber">Phone Number</label>
+      <input name="phoneNumber">
+      <label for="creditCard">Credit Card</label>
+      <input name="creditCard" type="number" maxlength="16" minlength="16" required>
+    </fieldset>
+    <button>Submit</button>
+  </form>
+  <script src="app.js"></script>
+</body>
+</html>

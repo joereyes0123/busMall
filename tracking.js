@@ -56,7 +56,7 @@ function randNum(){
 
     // start counting the number of times images were generated
   }randArray = [];
-  if(Products.looped < 5){
+  if(Products.looped < 26){
     randArray.push(leftNum,centerNum,rightNum);
     console.log(randArray);
 
